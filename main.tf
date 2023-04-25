@@ -8,7 +8,6 @@ terraform {
 }
 
 provider "aws" {
-  region  = "us-east-2"
-  profile = "mrta"
+  region = "us-east-1"
 }
 
