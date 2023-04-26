@@ -101,7 +101,7 @@ resource "aws_route_table_association" "publica-rt-association-b" {
 }
 
 
-## Nat Gateway e Route Table Publica
+## Nat Gateway e Route Table Privada
 
 resource "aws_eip" "eip-ngw" {
 }
