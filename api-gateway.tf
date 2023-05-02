@@ -90,4 +90,7 @@ resource "aws_api_gateway_integration" "integracoes_dogs_get" {
   uri                     = "http://$${stageVariables.loadBalancerCursosSvc}/dogs"
   connection_type         = "INTERNET"
   passthrough_behavior    = "WHEN_NO_MATCH"
+
+  depends_on = [aws_api_gateway_method.integracoes_dogs]
+
 }

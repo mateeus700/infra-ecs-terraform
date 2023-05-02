@@ -1,13 +1,5 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.64"
-    }
-  }
-}
+module "cerebrum_cursos_svc_ecr" {
+  source = "./modules/ecr"
 
-provider "aws" {
-  region = "us-east-1"
+  name_ecr = "cerebrum-cursos-svc"
 }
-

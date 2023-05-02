@@ -23,7 +23,7 @@ resource "aws_ecs_task_definition" "cursos_svc_td" {
   container_definitions = jsonencode([
     {
       name      = "cursos-svc-td"
-      image     = "${aws_ecr_repository.cursos-svc-ecr.repository_url}:latest"
+      image     = "${module.cerebrum_cursos_svc_ecr.repository_url}:latest"
       cpu       = 512
       memory    = 1024
       essential = true
@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "cursos_svc_td" {
   execution_role_arn = aws_iam_role.ecs_task_role.arn
 
   depends_on = [
-    aws_ecr_repository.cursos-svc-ecr,
+    module.cerebrum_cursos_svc_ecr,
   ]
 }
 
