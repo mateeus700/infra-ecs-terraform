@@ -19,6 +19,11 @@ variable "desired_count" {
   type        = number
 }
 
+variable "force_new_deployment" {
+  default = false
+  type    = bool
+}
+
 variable "launch_type" {
   default = "FARGATE"
   type    = string

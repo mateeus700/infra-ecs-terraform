@@ -38,7 +38,7 @@ resource "aws_api_gateway_stage" "integracoes" {
   stage_name    = "dev"
 
   variables = {
-    loadBalancerCursosSvc = aws_lb.cursos-svc-alb.dns_name
+    loadBalancerCursosSvc = module.cerebrum_cursos_svc_load_balance.dns_name
   }
 
   #   cache_cluster_enabled = true

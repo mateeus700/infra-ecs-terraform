@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "this" {
-  name = var.name_cluster
+  name = var.name
 
   # Conferir isso \/
   setting {
@@ -8,6 +8,6 @@ resource "aws_ecs_cluster" "this" {
   }
 
   tags = {
-    Name = var.name_cluster
+    Name = var.name
   }
 }

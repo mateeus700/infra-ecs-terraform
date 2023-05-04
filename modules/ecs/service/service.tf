@@ -6,7 +6,8 @@ resource "aws_ecs_service" "cerebrum_integracoes_service" {
 
   desired_count = var.desired_count
 
-  launch_type = var.launch_type
+  launch_type          = var.launch_type
+  force_new_deployment = var.force_new_deployment
 
   network_configuration {
     subnets         = var.network_configuration.subnets
