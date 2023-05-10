@@ -125,3 +125,29 @@ module "cerebrum_cursos_svc_target_group_listener" {
     target_group_arn = module.cerebrum_cursos_svc_target_group.arn
   }
 }
+
+
+module "cerebrum_integracoes_api_gateway" {
+  source = "./modules/api-gateway/api-gateway-config"
+
+  name                     = "cerebrum-integracoes"
+  description              = "API criada para integrações entre os produtos"
+  types                    = ["REGIONAL"]
+  binary_media_types       = ["multipart/form-data"]
+  minimum_compression_size = 0
+  deployment_description   = "Deploy em dev"
+  stage_name               = "dev"
+
+  load_balancer_variables = {
+    loadBalancerCursosSvc = module.cerebrum_cursos_svc_load_balance.dns_name
+  }
+}
+
+module "cerebrum_cursos_svc_api_gateway" {
+  source = "./modules/micro-servicos/cursos-svc/api-gateway"
+
+  rest_api_id      = module.cerebrum_integracoes_api_gateway.api_gateway_id
+  root_resource_id = module.cerebrum_integracoes_api_gateway.api_gateway_root_resource_id
+
+  depends_on = [module.cerebrum_integracoes_api_gateway]
+}
