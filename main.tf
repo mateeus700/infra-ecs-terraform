@@ -128,7 +128,7 @@ module "cerebrum_cursos_svc_target_group_listener" {
 
 
 module "cerebrum_integracoes_api_gateway" {
-  source = "./modules/api-gateway/api-gateway-config"
+  source = "./modules/api-gateway"
 
   name                     = "cerebrum-integracoes"
   description              = "API criada para integrações entre os produtos"
@@ -143,11 +143,4 @@ module "cerebrum_integracoes_api_gateway" {
   }
 }
 
-module "cerebrum_cursos_svc_api_gateway" {
-  source = "./modules/micro-servicos/cursos-svc/api-gateway"
 
-  rest_api_id      = module.cerebrum_integracoes_api_gateway.api_gateway_id
-  root_resource_id = module.cerebrum_integracoes_api_gateway.api_gateway_root_resource_id
-
-  depends_on = [module.cerebrum_integracoes_api_gateway]
-}

@@ -22,6 +22,8 @@ resource "aws_api_gateway_deployment" "this" {
   lifecycle {
     create_before_destroy = true
   }
+
+  depends_on = [module.cerebrum_cursos_svc_api_gateway]
 }
 
 resource "aws_api_gateway_stage" "this" {
@@ -49,3 +51,13 @@ resource "aws_api_gateway_stage" "this" {
 #     aws_api_gateway_deployment.frontends
 #   ]
 # }
+
+
+module "cerebrum_cursos_svc_api_gateway" {
+  source = "./cursos-svc"
+
+  rest_api_id      = aws_api_gateway_rest_api.this.id
+  root_resource_id = aws_api_gateway_rest_api.this.root_resource_id
+
+  depends_on = [aws_api_gateway_rest_api.this]
+}
